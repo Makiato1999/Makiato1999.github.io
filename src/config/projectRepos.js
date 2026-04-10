@@ -1,6 +1,6 @@
 export const projectRepoLinks = [
   'https://github.com/Makiato1999/HRI-EMO',
-  'https://github.com/Makiato1999/lucid-rpc',
+  'https://github.com/Makiato1999/agentic-travel',
   'https://github.com/Makiato1999/Dynamic-ThreadPool',
   'https://github.com/Makiato1999/PayPlus',
   'https://github.com/Makiato1999/MLFQ-CPU-Scheduling',

@@ -4,6 +4,7 @@ import {
   Cpu,
   FolderGit2,
   FlaskConical,
+  Download,
   Linkedin,
   Github,
   Mail,
@@ -14,6 +15,16 @@ import { projectRepoLinks } from './config/projectRepos'
 import avatar from './assets/avatar.jpg'
 
 const sections = ['about', 'projects']
+const resumeFiles = {
+  en: {
+    href: '/resume-en.pdf',
+    download: 'Xiaoran-Xie-Resume-EN.pdf'
+  },
+  zh: {
+    href: '/resume-zh.pdf',
+    download: '解晓然-简历.pdf'
+  }
+}
 
 const content = {
   en: {
@@ -29,7 +40,8 @@ const content = {
       email: 'xiaoran.xie@outlook.com',
       linkedin: 'linkedin.com/in/xiaoran-xie-3a305720a/',
       github: 'github.com/Makiato1999',
-      location: 'Toronto, ON'
+      location: 'Toronto, ON',
+      resume: 'Download Resume'
     },
     about: {
       introTitle: 'Introduction',
@@ -93,7 +105,8 @@ const content = {
       email: 'xiaoran.xie@outlook.com',
       linkedin: 'linkedin.com/in/xiaoran-xie-3a305720a/',
       github: 'github.com/Makiato1999',
-      location: '多伦多, 安大略'
+      location: '多伦多, 安大略',
+      resume: '下载简历'
     },
     about: {
       introTitle: '简介',
@@ -102,18 +115,32 @@ const content = {
       experienceTitle: '工作经历',
       experiences: [
         {
-          role: '全栈软件开发实习生',
+          role: 'AI 应用开发实习生',
           company: '安赛乐米塔尔 ArcelorMittal',
           address: '加拿大 多伦多',
-          period: '2024.9 - 2025.8',
-          detail: '负责公司 B2B 电商平台的后端功能开发与优化，基于 Spring Boot 与 JPA 实现复杂多条件动态查询与业务逻辑重构，将部分派生字段计算逻辑下沉至数据库层以提升查询一致性与可维护性；重构定价建议模块，拆分计算与持久化职责，优化接口边界与系统扩展性；参与竞价流程中的状态流转与并发控制设计，保障高并发场景下的数据一致性；协助完成与 PSI 系统的 IBM MQ 异步集成，实现消息处理、异常补偿与日志追踪机制。同时探索将 LLM 技术应用于内部文本数据分析与知识检索场景，设计基于向量检索的原型方案，用于提升非结构化业务数据的查询与理解效率。'
+          period: '2025.4 - 2025.8',
+          detail: '基于 LLM、RAG 与多 Agent 协作机制，开发面向企业知识检索、任务路由与流程辅助场景的智能助手。'
         },
         {
-          role: '后端软件开发实习生',
+          role: '软件开发实习生',
+          company: '安赛乐米塔尔 ArcelorMittal',
+          address: '加拿大 多伦多',
+          period: '2024.9 - 2025.4',
+          detail: '参与 ToB 非标钢材销售交易平台的现代化升级与后端重构，负责复杂查询、业务流程与数据一致性相关模块开发。'
+        },
+        {
+          role: '研究助理',
+          company: 'McMaster Human-Robot Interaction (HuRoN) Lab',
+          address: '加拿大 汉密尔顿',
+          period: '2025.9 - 2026.4',
+          detail: '参与面向人-机器人交互场景的多模态情绪识别与可解释性研究，围绕自适应跨模态特征融合、情绪级 Transformer 解码与细粒度可解释性分析开展模型设计与实验验证。'
+        },
+        {
+          role: 'Java 开发实习生',
           company: '江苏国泰新点软件有限公司 Epoint Software',
           address: '中国 南京',
           period: '2023.4 - 2023.7',
-          detail: '将遗留的 MVC 架构支付模块重构为基于领域驱动设计（DDD）的分层架构，提升领域模型清晰度与系统可维护性；设计并实现支持运行时动态配置的线程池组件，增强后端系统在高并发场景下的性能稳定性与资源利用效率。'
+          detail: '参与政务智慧大屏与便民服务平台相关模块的后端开发、接口联调与功能测试，协助完成需求实现和 bug 修复。'
         }
       ],
       educationTitle: '教育背景',
@@ -163,6 +190,7 @@ function App() {
   const [projectsError, setProjectsError] = useState('')
 
   const t = content[lang]
+  const resumeFile = resumeFiles[lang]
 
   useEffect(() => {
     const token = import.meta.env.VITE_GITHUB_TOKEN
@@ -310,6 +338,15 @@ function App() {
                 <MapPin size={14} /> {t.profile.location}
               </p>
             </div>
+
+            <a
+              href={resumeFile.href}
+              download={resumeFile.download}
+              className="mt-6 inline-flex items-center gap-2 border border-white/[0.18] px-3 py-2 text-sm text-white/85 transition-colors hover:border-white/[0.32] hover:bg-white/[0.06] hover:text-white/92"
+            >
+              <Download size={14} />
+              {t.profile.resume}
+            </a>
           </aside>
 
           <section className="border border-[var(--line)] bg-[var(--bg-soft)] p-6 sm:p-7 lg:p-8">
