@@ -53,7 +53,7 @@ const content = {
       experienceTitle: 'Work Experience',
       experiences: [
         {
-          role: 'Software Developer Co-op, AI Application',
+          role: 'Software Developer Co-op, AI Applications',
           company: 'ArcelorMittal',
           address: 'Toronto, Canada',
           period: '2025.4 - 2025.8',
