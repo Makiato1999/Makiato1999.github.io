@@ -129,14 +129,14 @@ const content = {
       experienceTitle: '工作经历',
       experiences: [
         {
-          role: 'AI 应用开发实习生',
+          role: '软件开发实习生，AI 应用',
           company: '安赛乐米塔尔 ArcelorMittal',
           address: '加拿大 多伦多',
           period: '2025.4 - 2025.8',
           detail: '基于 LLM、RAG 与多 Agent 协作机制，开发面向企业知识检索、任务路由与流程辅助场景的智能助手。'
         },
         {
-          role: '软件开发实习生',
+          role: '软件开发实习生，后端',
           company: '安赛乐米塔尔 ArcelorMittal',
           address: '加拿大 多伦多',
           period: '2024.9 - 2025.4',
