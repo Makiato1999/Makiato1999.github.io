@@ -9,6 +9,9 @@
   --bg-soft: #111111;
   --line: #2a2a2a;
   --text: #f5f5f5;
+  --line-soft: rgba(205, 221, 232, 0.16);
+  --panel-top: rgba(23, 31, 36, 0.66);
+  --panel-bottom: rgba(15, 20, 24, 0.65);
 }
 
 * {
@@ -29,6 +32,67 @@ body {
   color: var(--text);
 }
 
+a {
+  color: inherit;
+}
+
+.site-shell {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.site-background,
+.site-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  transition: opacity 180ms ease;
+}
+
+.site-background {
+  z-index: -3;
+  background-color: #0a0c0d;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  filter: saturate(0.92) brightness(0.94) contrast(1);
+  transform: scale(1.04);
+}
+
+.bg-off .site-background,
+.bg-off .site-overlay {
+  opacity: 0;
+}
+
+.site-overlay {
+  z-index: -2;
+  background:
+    radial-gradient(circle at 50% 32%, rgba(210, 226, 236, 0.08) 0%, rgba(255, 255, 255, 0.03) 18%, rgba(0, 0, 0, 0.05) 46%, rgba(0, 0, 0, 0.2) 76%, rgba(0, 0, 0, 0.38) 100%),
+    linear-gradient(180deg, rgba(8, 14, 18, 0.08) 0%, rgba(8, 12, 16, 0.18) 42%, rgba(2, 4, 6, 0.44) 100%);
+}
+
+.panel {
+  border: 1px solid var(--line-soft);
+  background:
+    linear-gradient(180deg, var(--panel-top) 0%, var(--panel-bottom) 100%);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.08) inset,
+    0 -18px 40px rgba(0, 0, 0, 0.08) inset,
+    0 22px 70px rgba(0, 0, 0, 0.24);
+  backdrop-filter: blur(12px);
+}
+
+.panel-solid {
+  background:
+    linear-gradient(180deg, rgba(24, 31, 36, 0.71) 0%, rgba(15, 20, 23, 0.69) 100%);
+}
+
+.panel-header {
+  background:
+    linear-gradient(180deg, rgba(24, 31, 36, 0.73) 0%, rgba(16, 21, 25, 0.7) 100%);
+}
+
 ::selection {
   background: #ffffff;
   color: #000000;
@@ -47,5 +111,24 @@ body {
     transparent 3px
   );
   mix-blend-mode: screen;
+  opacity: 0.22;
+}
+
+.scanlines::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02), transparent 16%, transparent 84%, rgba(255, 255, 255, 0.02)),
+    radial-gradient(circle at center, transparent 58%, rgba(0, 0, 0, 0.16) 100%);
+  opacity: 0.32;
+}
+
+.bg-off.scanlines::before {
   opacity: 0.3;
+}
+
+.bg-off.scanlines::after {
+  content: none;
 }

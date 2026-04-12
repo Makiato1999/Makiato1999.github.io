@@ -13,6 +13,8 @@ import {
 import { useEffect, useMemo, useState } from 'react'
 import { projectRepoLinks } from './config/projectRepos'
 import avatar from './assets/avatar.jpg'
+import avatarWithBackground from './assets/avatar2.webp'
+import background from './assets/background.webp'
 
 const sections = ['about', 'projects']
 const resumeFiles = {
@@ -31,6 +33,8 @@ const content = {
     nav: {
       about: 'About',
       projects: 'Projects',
+      backgroundOn: 'BG ON',
+      backgroundOff: 'BG OFF',
       lang: '中/EN'
     },
     profile: {
@@ -49,28 +53,36 @@ const content = {
       experienceTitle: 'Work Experience',
       experiences: [
         {
-          role: 'Full Stack Software Developer Co-op',
+          role: 'Software Developer Co-op, AI Application',
           company: 'ArcelorMittal',
           address: 'Toronto, Canada',
-          period: '2024.9 - 2025.8',
+          period: '2025.4 - 2025.8',
           detail:
-            'Led backend development for an internal B2B e-commerce bidding platform, optimizing complex JPA queries and refactoring business logic for improved consistency and scalability. Redesigned pricing workflows, strengthened concurrency control for transaction safety, and integrated IBM MQ with compensation and logging mechanisms. Prototyped LLM-powered vector retrieval to enhance internal knowledge search over unstructured data.'
+            'Built an enterprise AI assistant for knowledge retrieval and task automation using LLMs, RAG, and multi-agent orchestration.'
         },
-        // {
-        //   role: 'Software Developer (Research Assistant)',
-        //   company: 'HuRoN Lab at McMaster University',
-        //   address: 'Hamilton, Canada',
-        //   period: '2024.4 - 2024.8',
-        //   detail:
-        //     'Developed HCI project, microservices'
-        // },
         {
-          role: 'Backend Software Engineer Intern',
+          role: 'Software Developer Co-op, Backend',
+          company: 'ArcelorMittal',
+          address: 'Toronto, Canada',
+          period: '2024.9 - 2025.4',
+          detail:
+            'Modernized a B2B steel sales platform with a focus on backend refactoring, query performance, and data consistency.'
+        },
+        {
+          role: 'Research Assistant',
+          company: 'McMaster Human-Robot Interaction (HuRoN) Lab',
+          address: 'Hamilton, Canada',
+          period: '2024.4 - 2024.8',
+          detail:
+            'Conducted research on multimodal emotion recognition for human-robot interaction, focusing on cross-modal fusion, Transformer-based emotion modeling, and interpretable analysis.'
+        },
+        {
+          role: 'Java Developer Intern',
           company: 'Guo Tai Epoint Software',
           address: 'Nanjing, China',
           period: '2023.4 - 2023.7',
           detail:
-            'Refactored a legacy MVC payment module into a DDD-centric architecture to enhance domain clarity and maintainability. Designed and implemented a dynamic thread pool component that supports runtime configuration, improving backend performance and resource utilization.'
+            'Supported backend development, API integration, and functional testing for smart government dashboard and citizen service platform modules.'
         }
       ],
       educationTitle: 'Education',
@@ -96,6 +108,8 @@ const content = {
     nav: {
       about: '关于',
       projects: '项目',
+      backgroundOn: '背景 开',
+      backgroundOff: '背景 关',
       lang: 'EN/中'
     },
     profile: {
@@ -185,12 +199,32 @@ function parseRepoSlug(link) {
 function App() {
   const [section, setSection] = useState('about')
   const [lang, setLang] = useState('en')
+  const [showBackground, setShowBackground] = useState(true)
   const [projects, setProjects] = useState([])
   const [isProjectsLoading, setIsProjectsLoading] = useState(false)
   const [projectsError, setProjectsError] = useState('')
 
   const t = content[lang]
   const resumeFile = resumeFiles[lang]
+  const shellClassName = showBackground
+    ? 'site-shell background-enabled scanlines min-h-screen text-[var(--text)]'
+    : 'scanlines bg-off min-h-screen text-[var(--text)]'
+  const headerClassName = showBackground
+    ? 'panel panel-header mb-4 px-4 py-3 sm:mb-6'
+    : 'mb-4 border border-[var(--line)] bg-[var(--bg-soft)] px-4 py-3 sm:mb-6'
+  const asideClassName = showBackground
+    ? 'panel panel-solid h-fit px-5 py-6 lg:sticky lg:top-6'
+    : 'h-fit border border-[var(--line)] bg-[var(--bg-soft)] px-5 py-6 lg:sticky lg:top-6'
+  const sectionClassName = showBackground
+    ? 'panel p-6 sm:p-7 lg:p-8'
+    : 'border border-[var(--line)] bg-[var(--bg-soft)] p-6 sm:p-7 lg:p-8'
+  const avatarClassName = showBackground
+    ? 'mb-4 h-24 w-24 rounded-full border border-white/75 object-cover shadow-[0_0_0_4px_rgba(255,255,255,0.03)]'
+    : 'mb-4 h-24 w-24 rounded-full border border-[var(--text)] object-cover'
+  const avatarSrc = showBackground ? avatarWithBackground : avatar
+  const projectCardClassName = showBackground
+    ? 'group relative border border-[var(--line)] bg-black/10 p-4 transition-colors hover:border-white/70 hover:bg-white/[0.03]'
+    : 'group relative border border-[var(--line)] p-4 transition-colors hover:border-white/70'
 
   useEffect(() => {
     const token = import.meta.env.VITE_GITHUB_TOKEN
@@ -265,11 +299,20 @@ function App() {
   )
 
   return (
-    <div className="scanlines min-h-screen text-[var(--text)]">
-      <div className="mx-auto w-full max-w-[1200px] px-4 py-4 sm:px-6 sm:py-6">
-        <header className="mb-4 border border-[var(--line)] bg-[var(--bg-soft)] px-4 py-3 sm:mb-6">
+    <div className={shellClassName}>
+      <div
+        className="site-background"
+        style={{ backgroundImage: `url(${background})` }}
+        aria-hidden="true"
+      />
+      <div className="site-overlay" aria-hidden="true" />
+
+      <div className={`${showBackground ? 'relative z-10 ' : ''}mx-auto w-full max-w-[1200px] px-4 py-4 sm:px-6 sm:py-6`}>
+        <header className={headerClassName}>
           <div className="flex items-center justify-between gap-3">
-            <div className="text-xs uppercase tracking-[0.2em]">~/portfolio</div>
+            <div className={showBackground ? 'text-xs uppercase tracking-[0.2em] text-white/85' : 'text-xs uppercase tracking-[0.2em]'}>
+              ~/portfolio
+            </div>
             <nav className="flex items-center gap-5 text-sm">
               {sections.map((item) => (
                 <button
@@ -285,6 +328,13 @@ function App() {
               ))}
               <button
                 type="button"
+                onClick={() => setShowBackground((prev) => !prev)}
+                className="transition-opacity hover:opacity-70"
+              >
+                {showBackground ? t.nav.backgroundOn : t.nav.backgroundOff}
+              </button>
+              <button
+                type="button"
                 onClick={() => setLang((prev) => (prev === 'zh' ? 'en' : 'zh'))}
                 className="transition-opacity hover:opacity-70"
               >
@@ -295,12 +345,12 @@ function App() {
         </header>
 
         <main className="grid grid-cols-1 gap-4 lg:grid-cols-[320px_1fr] lg:gap-6">
-          <aside className="h-fit border border-[var(--line)] bg-[var(--bg-soft)] px-5 py-6 lg:sticky lg:top-6">
+          <aside className={asideClassName}>
             <div className="mb-7 flex flex-col items-start">
               <img
-                src={avatar}
+                src={avatarSrc}
                 alt="Xiaoran Xie"
-                className="mb-4 h-24 w-24 rounded-full border border-[var(--text)] object-cover"
+                className={avatarClassName}
               />
               <div className="text-2xl font-semibold tracking-[0.03em]">{t.profile.name}</div>
               <div className="mt-2 text-sm tracking-[0.04em] text-white/75">
@@ -349,7 +399,7 @@ function App() {
             </a>
           </aside>
 
-          <section className="border border-[var(--line)] bg-[var(--bg-soft)] p-6 sm:p-7 lg:p-8">
+          <section className={sectionClassName}>
             {section === 'about' ? (
               <div className="max-w-[760px] space-y-10">
                 <div className="space-y-4">
@@ -415,7 +465,7 @@ function App() {
                         href={project.repo}
                         target="_blank"
                         rel="noreferrer"
-                        className="group relative border border-[var(--line)] p-4 transition-colors hover:border-white/70"
+                        className={projectCardClassName}
                       >
                         <Icon size={16} className="absolute left-4 top-4 text-white/95" />
                         <div className="pl-7">
