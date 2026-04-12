@@ -72,7 +72,7 @@ const content = {
           role: 'Research Assistant',
           company: 'McMaster Human-Robot Interaction (HuRoN) Lab',
           address: 'Hamilton, Canada',
-          period: '2024.4 - 2024.8',
+          period: '2025.9 - 2026.4',
           detail:
             'Conducted research on multimodal emotion recognition for human-robot interaction, focusing on cross-modal fusion, Transformer-based emotion modeling, and interpretable analysis.'
         },
@@ -80,7 +80,7 @@ const content = {
           role: 'Java Developer Intern',
           company: 'Guo Tai Epoint Software',
           address: 'Nanjing, China',
-          period: '2023.4 - 2023.7',
+          period: '2023.4 - 2023.8',
           detail:
             'Supported backend development, API integration, and functional testing for smart government dashboard and citizen service platform modules.'
         }
@@ -153,7 +153,7 @@ const content = {
           role: 'Java 开发实习生',
           company: '江苏国泰新点软件有限公司 Epoint Software',
           address: '中国 南京',
-          period: '2023.4 - 2023.7',
+          period: '2023.4 - 2023.8',
           detail: '参与政务智慧大屏与便民服务平台相关模块的后端开发、接口联调与功能测试，协助完成需求实现和 bug 修复。'
         }
       ],
