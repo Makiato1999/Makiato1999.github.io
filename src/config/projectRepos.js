@@ -1,10 +1,12 @@
 export const projectRepoLinks = [
   'https://github.com/Makiato1999/HRI-EMO',
   'https://github.com/Makiato1999/agentic-travel',
-  'https://github.com/Makiato1999/Dynamic-ThreadPool',
+  'https://github.com/Makiato1999/hey-agents',
   'https://github.com/Makiato1999/PayPlus',
   'https://github.com/Makiato1999/MLFQ-CPU-Scheduling',
   'https://github.com/Makiato1999/exFAT-reader',
   'https://github.com/Makiato1999/ECG-Detector',
-  'https://github.com/Makiato1999/ESN'
-]
+  'https://github.com/Makiato1999/ESN',
+  'https://github.com/Makiato1999/Dynamic-ThreadPool',
+  'https://github.com/Makiato1999/MCP-Gateway',
+];
