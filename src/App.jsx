@@ -53,6 +53,14 @@ const content = {
       experienceTitle: 'Work Experience',
       experiences: [
         {
+          role: 'Software Engineer',
+          company: 'Noah Holdings',
+          address: 'Shanghai, China',
+          period: '2026.7 - current',
+          detail:
+            'Involved in distributed system development for financial account and transaction scenarios.'
+        },
+        {
           role: 'Software Developer Co-op, AI Applications',
           company: 'ArcelorMittal',
           address: 'Toronto, Canada',
@@ -128,6 +136,13 @@ const content = {
         '我专注于构建可扩展的 AI 系统与后端基础设施，重视系统的可靠性、性能与长期可维护的架构设计。依托软件工程与应用型 AI 研究背景，我将系统架构能力与智能应用实践相结合。',
       experienceTitle: '工作经历',
       experiences: [
+        {
+          role: '软件开发工程师',
+          company: '诺亚控股 Noah Holdings',
+          address: '中国 上海',
+          period: '2026.7 - 现在',
+          detail: '参与金融账户交易场景下的分布式系统研发。'
+        },
         {
           role: '软件开发实习生，AI 应用',
           company: '安赛乐米塔尔 ArcelorMittal',
